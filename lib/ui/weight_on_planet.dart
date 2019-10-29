@@ -18,7 +18,19 @@ class HomeState extends State<Home> {
   void handleRadioValueChange(int value){
     setState(() {
       radioValue = value;
-      
+
+      switch(radioValue){
+        case 0: finalResult = calculateWeight(_weightOnPlanet.text, 0.06);
+                _finalText = "Your weight on pluto $finalResult lbs";
+        break;
+        case 1: finalResult = calculateWeight(_weightOnPlanet.text, 0.38);
+                _finalText = "Your weight on pluto $finalResult lbs";
+        break;
+        case 2: finalResult = calculateWeight(_weightOnPlanet.text, 0.91);
+                _finalText = "Your weight on pluto $finalResult lbs";
+        break;
+        default: print("noting");
+      }
     });
   }
   Widget build(BuildContext context) {
@@ -104,5 +116,13 @@ class HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  double calculateWeight(String text, double d) {
+    if(int.parse(text).toString().isNotEmpty && int.parse(text) > 0){
+      return int.parse(text) * d;
+    }else{
+      print("wrong");
+    }
   }
 }
